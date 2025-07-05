@@ -6,6 +6,7 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated, AllowAny, SAFE_METHODS
 
 
 class UserListAPIView(ListAPIView):
@@ -16,12 +17,14 @@ class UserListAPIView(ListAPIView):
 class SkillListAPIView(ListAPIView):
     queryset = Skill.objects.all()
     serializer_class = SkillSerializer
+    permission_classes = [AllowAny]
 
 
 class SkillCreateAPIView(CreateAPIView):
     queryset = Skill.objects.all()
     serializer_class = SkillSerializer
     parser_classes = (MultiPartParser, FormParser)
+    permission_classes = [IsAuthenticated]
 
 
 class SkillDetailAPIView(RetrieveUpdateDestroyAPIView):
@@ -29,22 +32,34 @@ class SkillDetailAPIView(RetrieveUpdateDestroyAPIView):
     serializer_class = SkillSerializer
     parser_classes = (MultiPartParser, FormParser)
 
+    def get_permissions(self):
+        if self.request.method in SAFE_METHODS:
+            return [AllowAny()]
+        return [IsAuthenticated()]
+
 
 class ProjectListAPIView(ListAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+    permission_classes = [AllowAny]
 
 
 class ProjectCreateAPIView(CreateAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     parser_classes = (MultiPartParser, FormParser)
+    permission_classes = [IsAuthenticated]
 
 
 class ProjectDetailAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     parser_classes = (MultiPartParser, FormParser)
+
+    def get_permissions(self):
+        if self.request.method in SAFE_METHODS:
+            return [AllowAny()]
+        return [IsAuthenticated()]
 
 
 class BlogPostListAPIView(ListAPIView):
