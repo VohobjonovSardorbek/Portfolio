@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-=)5p(suo0hfl(s-&ig(z=9j@%qy5md4ef_m=*uc73$$ujijtz)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -198,6 +198,9 @@ else:
 
 MEDIA_URL ='media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
