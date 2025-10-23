@@ -83,8 +83,8 @@ class Education(models.Model):
     school = models.CharField(max_length=155)
     degree = models.CharField(max_length=155)
     teacher = models.CharField(max_length=155)
-    start_year = models.PositiveIntegerField()
-    end_year = models.PositiveIntegerField(blank=True, null=True)
+    start_date = models.DateField()
+    end_date = models.DateField(blank=True, null=True)
     description = CKEditor5Field('Description')
 
     def __str__(self):
