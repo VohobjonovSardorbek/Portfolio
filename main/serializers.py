@@ -117,8 +117,8 @@ class ExperienceSerializer(serializers.ModelSerializer):
 
 
 class EducationSerializer(serializers.ModelSerializer):
-    start_date = serializers.DateField(format='%Y-%m-%d', input_formats=('%Y-%m-%d',))
-    end_date = serializers.DateField(format='%Y-%m-%d', input_formats=('%Y-%m-%d',), required=False, allow_null=True)
+    start_year = serializers.DateField(format='%Y-%m-%d', input_formats=('%Y-%m-%d',))
+    end_year = serializers.DateField(format='%Y-%m-%d', input_formats=('%Y-%m-%d',), required=False, allow_null=True)
 
     class Meta:
         model = Education
