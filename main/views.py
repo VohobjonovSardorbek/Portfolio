@@ -121,6 +121,7 @@ class ExperienceListAPIView(ListAPIView):
 class ExperienceCreateAPIView(CreateAPIView):
     queryset = Experience.objects.all()
     serializer_class = ExperienceSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class ExperienceDetailAPIView(RetrieveUpdateDestroyAPIView):
@@ -136,6 +137,7 @@ class EducationListAPIView(ListAPIView):
 class EducationCreateAPIView(CreateAPIView):
     queryset = Education.objects.all()
     serializer_class = EducationSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class EducationDetailAPIView(RetrieveUpdateDestroyAPIView):
